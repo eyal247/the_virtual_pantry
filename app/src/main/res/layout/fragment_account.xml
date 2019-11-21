@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorPrimaryLight">
+
+       <RelativeLayout
+           android:layout_width="@dimen/toolbar_profile_width"
+           android:layout_height="wrap_content"
+           android:id="@+id/profile_pic_rl"
+           android:layout_centerInParent="true">
+
+           <com.mikhaellopez.circularimageview.CircularImageView
+               android:id="@+id/circle_profile_image"
+               android:layout_width="@dimen/toolbar_profile_width"
+               android:layout_height="@dimen/toolbar_profile_width"
+               android:scaleType="centerInside"
+               android:src="@drawable/woman"
+               android:layout_centerInParent="true"
+               app:civ_border_color="@android:color/white"
+               app:civ_border_width="2dp" />
+           <ImageView
+               android:id="@+id/img_plus"
+               android:layout_width="@dimen/ic_plus_width"
+               android:layout_height="@dimen/ic_plus_width"
+               android:layout_alignBottom="@id/circle_profile_image"
+               android:layout_alignParentEnd="true"
+               android:src="@drawable/add_circle_24px_pink" />
+       </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_notifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:text="@string/user_name"
+            android:layout_marginEnd="8dp"
+            android:layout_below="@+id/profile_pic_rl"
+            android:textAlignment="center"
+            android:layout_centerInParent="true"
+            android:textSize="26sp" />
+
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

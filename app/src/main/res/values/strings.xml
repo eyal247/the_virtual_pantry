@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">The Virtual Pantry</string>
+    <string name="title_pantry">Pantry</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_account">Account</string>
+    <string name="user_name">Shelly Stevens</string>
+    <string name="open_camera">Open Camera</string>
+    <string name="upload_picture">Upload Picture</string>
+
+
+    <!-- Font Families -->
+
+    <string name="font_family_medium">sans-serif-medium</string>
+    <string name="font_family_condensed">sans-serif-condensed</string>
+
+</resources>
