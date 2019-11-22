@@ -67,7 +67,7 @@ import static android.app.Activity.RESULT_OK;
 public class PantryFragment extends Fragment {
 
     private final String TAG = "CloudVisionExample";
-    private static final String CLOUD_VISION_API_KEY = "AIzaSyD1VHDeHr87GJWHUIWOoyVogAHIA7A0q3I";
+    private static final String CLOUD_VISION_API_KEY = "AIzaSyBFs_tLGCnsDURRRHgBxH3zn4m_AJBQcTs";
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     private static final int MY_LIBRARY_REQUEST_CODE = 200;
     private int index = 0;
@@ -136,14 +136,14 @@ public class PantryFragment extends Fragment {
 
             case 0:
                 icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.penne);
-                a = new Item("Penne", 1, icon);
+                a = new Item("Barilla", 1, icon);
                 break;
             case 1:
                 icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.beer);
                 a = new Item("Budweiser", 1, icon);
                 break;
             case 2:
-                icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.tide);
+                icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.tide3);
                 a = new Item("Tide", 1, icon);
                 break;
         }
@@ -287,7 +287,7 @@ public class PantryFragment extends Fragment {
 
             protected void onPostExecute(String str) {
                 spinner.setVisibility(View.GONE);
-                Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
                 prepareItems();
             }
         }.execute();
