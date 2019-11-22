@@ -58,7 +58,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.MyViewHold
         holder.count.setText(item.getNumOfItems() + " items");
 
         // loading album cover using Glide library
-        Glide.with(mContext).load(item.getThumbnail()).into(holder.thumbnail);
+        holder.thumbnail.setImageBitmap(item.getBitmap());
 
 //        holder.overflow.setOnClickListener(new View.OnClickListener() {
 //            @Override

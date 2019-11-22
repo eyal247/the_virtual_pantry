@@ -1,18 +1,20 @@
 package com.example.thevirtualpantry.model;
 
+import android.graphics.Bitmap;
+
 public class Item {
 
     private String name;
     private int quantity;
-    private int thumbnail;
+    private Bitmap bitmap;
 
     public Item() {
     }
 
-    public Item(String name, int quantity, int thumbnail) {
+    public Item(String name, int quantity, Bitmap bitmap) {
         this.name = name;
         this.quantity = quantity;
-        this.thumbnail = thumbnail;
+        this.bitmap = bitmap;
     }
 
     public String getName() {
@@ -31,11 +33,11 @@ public class Item {
         this.quantity = numOfItems;
     }
 
-    public int getThumbnail() {
-        return thumbnail;
+    public Bitmap getBitmap() {
+        return bitmap;
     }
 
-    public void setThumbnail(int thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 }
