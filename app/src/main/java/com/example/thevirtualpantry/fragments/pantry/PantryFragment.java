@@ -138,7 +138,7 @@ public class PantryFragment extends Fragment {
                 a = new Item("Penne", 1, icon);
                 break;
             case 1:
-                icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.bud);
+                icon = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.beer);
                 a = new Item("Budweiser", 1, icon);
                 break;
             case 2:
