@@ -1,17 +1,15 @@
 package com.example.thevirtualpantry.fragments.pantry;
 
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,6 +34,8 @@ import com.example.thevirtualpantry.PantryAdapter.PantryAdapter;
 import com.example.thevirtualpantry.R;
 import com.example.thevirtualpantry.model.Item;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,26 +103,15 @@ public class PantryFragment extends Fragment {
                 R.drawable.spaghetti
         };
 
-        Item a = new Item("Barilla Tomato Sauce ", 3, thumbnails[0]);
+
+        Bitmap icon = BitmapFactory.decodeResource(getContext().getResources(),
+                R.drawable.barilla_penne);
+        Item a = new Item("Barilla Tomato Sauce ", 3, icon);
         itemList.add(a);
 
-        a = new Item("Olive Oil", 1, thumbnails[1]);
+        a = new Item("Olive Oil", 1, icon);
         itemList.add(a);
-
-        a = new Item("Nature Valley", 2, thumbnails[1]);
-        itemList.add(a);
-
-        a = new Item("Barilla Pasta", 6, thumbnails[1]);
-        itemList.add(a);
-
-        a = new Item("Barilla Pasta", 6, thumbnails[3]);
-        itemList.add(a);
-
-        a = new Item("Barilla Pasta", 6, thumbnails[3]);
-        itemList.add(a);
-
-        a = new Item("Barilla Pasta", 6, thumbnails[3]);
-        itemList.add(a);
+        
 
         adapter.notifyDataSetChanged();
     }
@@ -195,20 +184,33 @@ public class PantryFragment extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == MY_CAMERA_REQUEST_CODE) {
-            performCloudVisionRequest(data.getData());
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            performCloudVisionRequest(photo);
         } else if (requestCode == MY_LIBRARY_REQUEST_CODE) {
             if (requestCode == MY_LIBRARY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-                performCloudVisionRequest(data.getData());
+                try {
+                    final Uri imageUri = data.getData();
+                    final InputStream imageStream = getContext().getContentResolver().openInputStream(imageUri);
+                    final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    Item a = new Item("hiiii", 5, selectedImage);
+                    itemList.add(a);
+                    adapter.notifyDataSetChanged();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
 
-    private void performCloudVisionRequest(Uri data) {
-
+    private void performCloudVisionRequest(Bitmap data) {
+        Item a = new Item("Item", 4, data);
+        itemList.add(a);
+        adapter.notifyDataSetChanged();
     }
 
 
@@ -236,9 +238,9 @@ public class PantryFragment extends Fragment {
 
 
     private void openLibrary() {
-        Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(pickPhoto , MY_LIBRARY_REQUEST_CODE);//one can be replaced with any action code
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent , MY_LIBRARY_REQUEST_CODE);//one can be replaced with any action code
     }
 
 
