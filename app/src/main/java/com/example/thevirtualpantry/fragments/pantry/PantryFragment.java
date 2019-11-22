@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Response;
 import com.example.thevirtualpantry.PantryAdapter.PantryAdapter;
 import com.example.thevirtualpantry.R;
 import com.example.thevirtualpantry.model.Item;
@@ -66,7 +67,7 @@ import static android.app.Activity.RESULT_OK;
 public class PantryFragment extends Fragment {
 
     private final String TAG = "CloudVisionExample";
-    private static final String CLOUD_VISION_API_KEY = "AIzaSyBDynVw_fpyMRoGoeR0mcpSnGfNSq3NVVM";
+    private static final String CLOUD_VISION_API_KEY = "AIzaSyD1VHDeHr87GJWHUIWOoyVogAHIA7A0q3I";
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     private static final int MY_LIBRARY_REQUEST_CODE = 200;
     private int index = 0;
@@ -284,8 +285,9 @@ public class PantryFragment extends Fragment {
                 return "Cloud Vision API request failed. Check logs for details.";
             }
 
-            protected void onPostExecute(String result) {
+            protected void onPostExecute(String str) {
                 spinner.setVisibility(View.GONE);
+                Toast.makeText(getContext(), str, Toast.LENGTH_LONG).show();
                 prepareItems();
             }
         }.execute();
