@@ -35,24 +35,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.thevirtualpantry.PantryAdapter.PantryAdapter;
 import com.example.thevirtualpantry.R;
 import com.example.thevirtualpantry.model.Item;
-import com.google.api.client.extensions.android.http.AndroidHttp;
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.gson.GsonFactory;
-import com.google.api.services.vision.v1.Vision;
-import com.google.api.services.vision.v1.VisionRequestInitializer;
-import com.google.api.services.vision.v1.model.AnnotateImageRequest;
-import com.google.api.services.vision.v1.model.BatchAnnotateImagesRequest;
-import com.google.api.services.vision.v1.model.BatchAnnotateImagesResponse;
-import com.google.api.services.vision.v1.model.Feature;
-import com.google.api.services.vision.v1.model.Image;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -224,38 +207,9 @@ public class PantryFragment extends Fragment {
         }
     }
 
+    private void performCloudVisionRequest(Uri data) {
 
-    public void performCloudVisionRequest(Uri uri) {
-        if (uri != null) {
-            try {
-                Bitmap bitmap = resizeBitmap(
-                        MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri));
-                callCloudVision(bitmap);
-                selectedImage.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                Log.e(TAG, e.getMessage());
-            }
-        }
     }
-
-    private void callCloudVision(final Bitmap bitmap) {
-        //TODO: implement
-    }
-
-    @NonNull
-    private Image getImageEncodeImage(Bitmap bitmap) {
-        Image base64EncodedImage = new Image();
-        // Convert the bitmap to a JPEG
-        // Just in case it's a format that Android understands but Cloud Vision
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
-        byte[] imageBytes = byteArrayOutputStream.toByteArray();
-
-        // Base64 encode the JPEG
-        base64EncodedImage.encodeContent(imageBytes);
-        return base64EncodedImage;
-    }
-
 
 
     public Bitmap resizeBitmap(Bitmap bitmap) {
