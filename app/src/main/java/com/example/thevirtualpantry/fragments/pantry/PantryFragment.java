@@ -67,7 +67,7 @@ import static android.app.Activity.RESULT_OK;
 public class PantryFragment extends Fragment {
 
     private final String TAG = "CloudVisionExample";
-    private static final String CLOUD_VISION_API_KEY = "AIzaSyBFs_tLGCnsDURRRHgBxH3zn4m_AJBQcTs";
+    private static final String CLOUD_VISION_API_KEY = 'Your_API_Here;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     private static final int MY_LIBRARY_REQUEST_CODE = 200;
     private int index = 0;
